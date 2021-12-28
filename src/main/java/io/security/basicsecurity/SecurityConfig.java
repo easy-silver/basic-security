@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 @EnableWebSecurity
@@ -23,9 +24,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http
                 .sessionManagement()
-                .sessionFixation()
-                //세션 고정 보호를 위해 세션 아이디 항상 변경(기본값)
-                .changeSessionId()
+                //세션 미사용(JWT 사용 등에서)
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
         ;
 
     }
