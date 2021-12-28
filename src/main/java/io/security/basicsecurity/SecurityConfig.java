@@ -23,8 +23,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http
                 .sessionManagement()
-                .maximumSessions(1)
-                .maxSessionsPreventsLogin(false);
+                .sessionFixation()
+                //세션 고정 보호를 위해 세션 아이디 항상 변경(기본값)
+                .changeSessionId()
+        ;
 
     }
 }
